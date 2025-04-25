@@ -173,3 +173,12 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 .venvmle/
+# macOS
+.DS_Store
+
+# Python 运行时
+__pycache__/
+*.py[cod]
+# 编辑器／IDE
+.vscode/
+*.sublime-workspace
