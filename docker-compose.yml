@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # 1) 运行你的 Python 脚本
+  app:
+    build: .
+    container_name: my_py
+    # 把本地目录挂进容器，改代码实时可见（开发时用）
+    volumes:
+      - .:/app
+    # 如果脚本 listen 在 8000 端口，就映射到宿主机 8000
+    ports:
+      - "8000:8000"
+    # 指定容器启动时要执行的命令
+    command: ["python", "hello.py"]
+
+  # 2) 启动 Jupyter Notebook/Lab
+  notebook:
+    build: .
+    container_name: my_notebook
+    volumes:
+      - .:/app
+    ports:
+      - "8888:8888"
+    # 这里假设你想在 8888 端口打开 notebook
+    command:
+      [
+        "jupyter", "notebook",
+        "--ip=0.0.0.0",
+        "--port=8888",
+        "--no-browser",
+        "--allow-root"
+      ]
