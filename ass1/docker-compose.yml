@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  mlapp:
+    build: .
+    container_name: ml_app
+    volumes:
+      - .:/app                   
+    ports:
+      - "8888:8888"              
+    environment:
+      - SPARK_MASTER=local[*]
+      - JAVA_HOME=/usr/local/openjdk-11
+    command: ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]

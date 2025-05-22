@@ -1,0 +1,23 @@
+# 1. 选择官方 Python 运行时作为基础镜像
+FROM python:3.11-slim
+
+
+
+
+# 3. 设置工作目录
+WORKDIR /app
+
+# 4. 拷贝依赖清单到镜像
+#    如果你没有 requirements.txt，可跳过这两行
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 5. 拷贝你的 Python 脚本（和其它代码）到镜像
+COPY . .
+
+# 6. 暴露端口（如果你的脚本启动了 HTTP 服务；否则可省略）
+# EXPOSE 8000
+
+# 7. 容器启动时默认执行的命令
+#    假设你的脚本名为 main.py
+CMD ["python", "lab_2.py"]

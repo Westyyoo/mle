@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    # 直接使用官方 Python 运行镜像
+    image: python:3.11-slim
+    container_name: python-app
+    
+    # 挂载当前目录到容器，方便本地修改
+    volumes:
+      - .:/app
+    working_dir: /app
+
+    # 如果需要提前安装依赖，可在这里加：
+    # command: bash -c "pip install -r requirements.txt && python main.py"
+    
+    # 直接运行脚本
+    command: python lab_2.py
